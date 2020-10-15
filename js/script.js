@@ -44,8 +44,8 @@ const showPage = (list, page) => {
          const profilePic = createElement(img, className, 'avatar');
             profilePic.src = '';
             profilePic.alt = ''; 
-         const studentName = createElement(h3, className, 'email');
-         const studentEmail = createElement(span, className, 'joined-details');
+         const studentName = createElement(h3, className, '');
+         const studentEmail = createElement(span, className, 'email');
          const joinedContainer = createElement(div, className, 'joined-details'); 
          const joindDate = createElement(span, className, 'date');
          
