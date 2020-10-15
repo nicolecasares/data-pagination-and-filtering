@@ -19,10 +19,7 @@ Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
 
-// function createElement(elementName, property, value) {
-//    const element = document.createElement(elementName);
-//    element[property] = value;
-//   }
+// using this article https://medium.com/chingu/looping-over-arrays-and-objects-in-javascript-57e1188c1ba2
 
 const showPage = (list, page) => { 
   const start = (page * 9) - 9;
@@ -30,8 +27,8 @@ const showPage = (list, page) => {
   const ul =  document.querySelector('.student-list');
   ul.innerHTML = '';
 
-  for(let i = 0; list.length < 10; i++) {
-      if(list[i] >= start && list[i] < end) {
+  for(let list in data) {
+      if(data[list] >= start && data[list] < end) {
 
          const createElement = (elementName, property, value) => {
             const element = document.createElement(elementName);
@@ -42,17 +39,22 @@ const showPage = (list, page) => {
          const li = createElement(li, className, 'student-item cf');
          const detailContainer = createElement(div, className, 'student-details');
          const profilePic = createElement(img, className, 'avatar');
-            profilePic.src = '';
-            profilePic.alt = ''; 
+            profilePic.src = data[list][picture][thumbnail];
+            profilePic.alt = data[list][name]; 
          const studentName = createElement(h3, className, '');
          const studentEmail = createElement(span, className, 'email');
          const joinedContainer = createElement(div, className, 'joined-details'); 
          const joindDate = createElement(span, className, 'date');
-         
 
+         const createLi = () => {
+            `
+            
+            `
 
-      }
-  }
+         }
+
+      }//end of if
+  }//end of for loop
 
 };
 
