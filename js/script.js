@@ -11,9 +11,6 @@ For assistance:
    Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
 */
 
-
-
-
 /*
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
@@ -23,33 +20,38 @@ This function will create and insert/append the elements needed to display a "pa
 
 const showPage = (list, page) => { 
    // create two variables which will represent the index for the first and last student on the page
-  const start = (page * 9) - 9;
-  const end = page * 9;
+  const startIndex = (page * 9) - 9;
+  const endIndex = page * 9;
   // select the element with a class of `student-list` and assign it to a variable
   const ul =  document.querySelector('.student-list');
   // set the innerHTML property of the variable you just created to an empty string
-  const studentList = ul.innerHTML = '';
+  const studentList = ul;
+
+studentList.innerHTML = '';
 
    // loop over the length of the `list` parameter
    for(let i = 0; i < list.length; i++) {
       if(i >= startIndex && i < endIndex){
-         studentList = `
+         const studentItem = list[i];
+         studentList.insertAdjacentHTML('beforeend',
+         `
          <li class="student-item cf">
          <div class="student-details">
-           <img class="avatar" src="https://randomuser.me/api/portraits/women/25.jpg" alt="Profile Picture">
-           <h3>Ethel Dean</h3>
-           <span class="email">ethel.dean@example.com</span>
+           <img class="avatar" src="${studentItem.picture.thumbnail}" alt="Profile Picture">
+           <h3>${studentItem.name.first} ${studentItem.name.last} </h3>
+           <span class="email">${studentItem.email}</span>
          </div>
          <div class="joined-details">
-           <span class="date">Joined 12-15-2005</span>
+           <span class="date">Joined ${studentItem.date}</span>
          </div>
        </li> 
-         
-         `; 
-      }
-      
+         `
+         ); 
+      } 
    }
 }
+
+showPage(data, 1);
 
 /*
 Create the `addPagination` function
@@ -57,9 +59,39 @@ This function will create and insert/append the elements needed for the paginati
 */
 
 const addPagination = (list) => {
+   console.log(list);
+   // create a variable to calculate the number of pages needed
+   numOfPages = Math.ceil(list.length / 9);
+  // select the element with a class of `link-list` and assign it to a variable
+   const linkList = document.querySelector('ul.link-list');
+  // set the innerHTML property of the variable you just created to an empty string
+   linkList.innerHTML = '';
+  // loop over the number of pages needed
+   for(let i = 1; i <= numOfPages; i++) {
+      linkList.insertAdjacentHTML('beforeend', 
+      `
+      <li>
+         <button type="button">${i}</button>
+      </li>
+      `
+      );
+   }
+
+    // create the elements needed to display the pagination button
+    // insert the above elements
+
+  // give the first pagination button a class of "active"
+
+  // create an event listener on the `link-list` element
+    // if the click target is a button:
+      // remove the "active" class from the previous button
+      // add the active class to the clicked button
+      // call the showPage function passing the `list` parameter and page to display as arguments
 
 }
 
-showPage(0, 0);
+
 
 // Call functions
+
+addPagination(data);
