@@ -36,7 +36,7 @@ studentList.innerHTML = '';
          ); 
       } 
    }
-}
+};
 
 const addPagination = (list) => {
    console.log(list);
@@ -76,7 +76,7 @@ const addPagination = (list) => {
       // add the active class to the clicked button
       // call the showPage function passing the `list` parameter and page to display as arguments
 
-}
+};
 // Call functions
 showPage(data, 1);
 addPagination(data);
