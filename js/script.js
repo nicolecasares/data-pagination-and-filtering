@@ -22,35 +22,34 @@ This function will create and insert/append the elements needed to display a "pa
 // using this article https://medium.com/chingu/looping-over-arrays-and-objects-in-javascript-57e1188c1ba2
 
 const showPage = (list, page) => { 
+   // create two variables which will represent the index for the first and last student on the page
   const start = (page * 9) - 9;
   const end = page * 9;
+  // select the element with a class of `student-list` and assign it to a variable
   const ul =  document.querySelector('.student-list');
-  ul.innerHTML = '';
+  // set the innerHTML property of the variable you just created to an empty string
+  const studentList = ul.innerHTML = '';
 
-  for(let list in data) {
-      if(data[list] >= start && data[list] < end) {
-
-         const createElement = (elementName, property, value) => {
-            const element = document.createElement(elementName);
-            element[property] = value;
-         }
-
-         // Creating all the elements for each student
-         const li = createElement(li, className, 'student-item cf');
-         const detailContainer = createElement(div, className, 'student-details');
-         const profilePic = createElement(img, className, 'avatar');
-            profilePic.src = data[list][picture][thumbnail];
-            profilePic.alt = data[list][name]; 
-         const studentName = createElement(h3, className, '');
-         const studentEmail = createElement(span, className, 'email');
-         const joinedContainer = createElement(div, className, 'joined-details'); 
-         const joindDate = createElement(span, className, 'date');
-
-      }//end of if
-  }//end of for loop
-
-};
-
+   // loop over the length of the `list` parameter
+   for(let i = 0; i < list.length; i++) {
+      if(i >= startIndex && i < endIndex){
+         studentList = `
+         <li class="student-item cf">
+         <div class="student-details">
+           <img class="avatar" src="https://randomuser.me/api/portraits/women/25.jpg" alt="Profile Picture">
+           <h3>Ethel Dean</h3>
+           <span class="email">ethel.dean@example.com</span>
+         </div>
+         <div class="joined-details">
+           <span class="date">Joined 12-15-2005</span>
+         </div>
+       </li> 
+         
+         `; 
+      }
+      
+   }
+}
 
 /*
 Create the `addPagination` function
@@ -61,6 +60,6 @@ const addPagination = (list) => {
 
 }
 
-
+showPage(0, 0);
 
 // Call functions
