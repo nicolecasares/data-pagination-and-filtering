@@ -3,19 +3,6 @@ Treehouse Techdegree:
 FSJS Project 2 - Data Pagination and Filtering
 */
 
-
-
-/*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
-   Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
-*/
-
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
-*/
-
 // using this article https://medium.com/chingu/looping-over-arrays-and-objects-in-javascript-57e1188c1ba2
 
 const showPage = (list, page) => { 
@@ -51,13 +38,6 @@ studentList.innerHTML = '';
    }
 }
 
-showPage(data, 1);
-
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
-
 const addPagination = (list) => {
    console.log(list);
    // create a variable to calculate the number of pages needed
@@ -75,12 +55,20 @@ const addPagination = (list) => {
       </li>
       `
       );
+      const firstButton = document.querySelector('.pagination li:first-child button');
+      firstButton.className = 'active';
    }
+   linkList.addEventListener('click', (e) => {
+      if(e.target.nodeName == "BUTTON") {
+         const activeButton = document.querySelector('.active');
+         activeButton.className = ' ';
+         e.target.className = 'active';
+         const page = e.target.textContent;
+         showPage(list, page);
 
-    // create the elements needed to display the pagination button
-    // insert the above elements
+      }
 
-  // give the first pagination button a class of "active"
+   });
 
   // create an event listener on the `link-list` element
     // if the click target is a button:
@@ -89,9 +77,6 @@ const addPagination = (list) => {
       // call the showPage function passing the `list` parameter and page to display as arguments
 
 }
-
-
-
 // Call functions
-
+showPage(data, 1);
 addPagination(data);
