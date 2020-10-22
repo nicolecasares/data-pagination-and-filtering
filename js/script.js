@@ -46,13 +46,6 @@ const showPage = (list, page) => {
          const joinedContainer = createElement(div, className, 'joined-details'); 
          const joindDate = createElement(span, className, 'date');
 
-         const createLi = () => {
-            `
-            
-            `
-
-         }
-
       }//end of if
   }//end of for loop
 
@@ -63,6 +56,10 @@ const showPage = (list, page) => {
 Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
+
+const addPagination = (list) => {
+
+}
 
 
 
