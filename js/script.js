@@ -83,9 +83,18 @@ submit.addEventListener('click', (e) => {
    addPagination(data);
    const submit = document.querySelector('#submit'); 
    const search = document.querySelector('#search-input').value;
+   // make user input capitalized
+   function capitalize(studentName) {
+      return studentName[0].toUpperCase() + studentName.slice(1).toLowerCase();
+      console.log(studentName);
+    }
+
+    const capitalizedName = capitalize(search);
+
    // The filter() method creates a new array with all elements that pass the test implemented by the provided function.
    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-   const items = data.filter(item => item.name.first.indexOf(search) !== -1);
+   
+   const items = data.filter(item => item.name.first.indexOf(capitalizedName) !== -1);
    console.log(search);
    console.log(items);
    showPage(items, 1);
