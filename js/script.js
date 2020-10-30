@@ -5,6 +5,7 @@ FSJS Project 2 - Data Pagination and Filtering
 
 // using this article https://medium.com/chingu/looping-over-arrays-and-objects-in-javascript-57e1188c1ba2
 
+
 const showPage = (list, page) => { 
    // create two variables which will represent the index for the first and last student on the page
   const startIndex = (page * 9) - 9;
@@ -13,6 +14,7 @@ const showPage = (list, page) => {
   const ul =  document.querySelector('.student-list');
   // set the innerHTML property of the variable you just created to an empty string
   const studentList = ul;
+
 
 studentList.innerHTML = '';
 
@@ -29,7 +31,7 @@ studentList.innerHTML = '';
            <span class="email">${studentItem.email}</span>
          </div>
          <div class="joined-details">
-           <span class="date">Joined ${studentItem.date}</span>
+           <span class="date">Joined ${studentItem.registered.date}</span>
          </div>
        </li> 
          `
@@ -39,7 +41,6 @@ studentList.innerHTML = '';
 };
 
 const addPagination = (list) => {
-   console.log(list);
    // create a variable to calculate the number of pages needed
    numOfPages = Math.ceil(list.length / 9);
   // select the element with a class of `link-list` and assign it to a variable
@@ -70,13 +71,23 @@ const addPagination = (list) => {
 
    });
 
-  // create an event listener on the `link-list` element
-    // if the click target is a button:
-      // remove the "active" class from the previous button
-      // add the active class to the clicked button
-      // call the showPage function passing the `list` parameter and page to display as arguments
-
 };
+
 // Call functions
 showPage(data, 1);
 addPagination(data);
+
+
+submit.addEventListener('click', (e) => {
+   e.preventDefault();
+   addPagination(data);
+   const submit = document.querySelector('#submit'); 
+   const search = document.querySelector('#search-input').value;
+   // The filter() method creates a new array with all elements that pass the test implemented by the provided function.
+   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+   const items = data.filter(item => item.name.first.indexOf(search) !== -1);
+   console.log(search);
+   console.log(items);
+   showPage(items, 1);
+
+});

@@ -720,3 +720,8 @@ const data = [
     },
   },
 ];
+
+
+// const items = data.filter(item => item.name.first.indexOf('Allen') !== -1);
+
+// console.log(items);
