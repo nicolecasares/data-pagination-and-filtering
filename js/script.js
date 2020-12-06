@@ -80,7 +80,6 @@ addPagination(data);
 
 submit.addEventListener('click', (e) => {
    e.preventDefault();
-   addPagination(data);
    const submit = document.querySelector('#submit'); 
    const search = document.querySelector('#search-input').value;
    // make user input capitalized
@@ -95,8 +94,16 @@ submit.addEventListener('click', (e) => {
    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
    
    const items = data.filter(item => item.name.first.indexOf(capitalizedName) !== -1);
-   console.log(search);
-   console.log(items);
    showPage(items, 1);
+
+   if(items === undefined || items.length == 0) {
+      document.querySelector('.error').insertAdjacentHTML('beforeend', 
+      `
+      <p>No students found</p>
+      `
+      )
+   }
+   addPagination(items);
+
 
 });
